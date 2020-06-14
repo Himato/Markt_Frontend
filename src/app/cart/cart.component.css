@@ -1,0 +1,39 @@
+.quantity {
+  width: 100%;
+}
+
+.quantity input {
+  width: 100%!important;
+  text-align: center;
+  padding-left: 0px;
+}
+
+img {
+  width: 300px;
+  height: 280px;
+}
+
+.btn-qty {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #eee;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 300;
+  height: 100%;
+  line-height: 50px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 40px;
+  color: #5e6977;
+}
+
+.btn-qty:hover {
+    background: #03a9f4;
+    color: #fff
+}
+
+.btn-qty.down {
+  right: auto;
+}

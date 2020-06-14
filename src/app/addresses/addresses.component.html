@@ -1,0 +1,40 @@
+<div class="page">
+    <div class="search-section">
+      <div class="container">
+        <h1>My Addresses</h1>
+      </div>
+    </div>
+    <div class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a [routerLink]="['/']" >Home</a></li>
+          <li class="active">Addresses</li>
+        </ol>
+      </div>
+    </div>
+    <div class="content-wrapper">
+      <div class="container" *ngIf="!addresses || addresses.length === 0">
+        <app-spinner *ngIf="fetching"></app-spinner>
+        <p class="text-center text-black" *ngIf="!fetching">
+          There is no orders ordered yet
+        </p>
+        <p class="text-center text-danger" *ngIf="!!error && !fetching">
+            {{ error }}
+          </p>
+      </div>
+      <div class="container" *ngIf="!!addresses && addresses.length > 0">
+        <table class="table table-striped paper-block">
+          <tbody>
+            <tr 
+              *ngFor="let address of addresses" >
+              <td class="text-center">{{ address.address }}</td>
+              <td class="text-center">{{ address.city }}</td>
+              <td class="text-center">{{ address.country }}</td>
+              <td class="text-center">{{ address.postCode }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

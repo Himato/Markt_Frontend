@@ -1,0 +1,20 @@
+td {
+  text-align: center !important;
+}
+
+table {
+  border: 3px solid #f5f8fa;
+}
+
+tbody > tr {
+  height: 80px;
+}
+
+.category {
+  height: 60px !important;
+  background-color: #f5f8fa;
+}
+
+.category > td {
+  text-align: left !important;
+}

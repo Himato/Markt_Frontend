@@ -1,0 +1,148 @@
+<div class="page">
+  <div class="content-wrapper">
+    <div class="container">
+      <app-spinner *ngIf="fetching"></app-spinner>
+      <div class="single-product-detail" *ngIf="!fetching">
+        <div class="row">
+          <div class="col-12 col-lg-5">
+            <div class="demo">
+              <div class="slide-outer">
+                <div class="slide-wrapper">
+                  <img [src]="url + product.images[defaultImage]">
+                </div>
+              </div>
+              <ul class="slide-gallery" >
+                <li *ngFor="let image of product.images; let i = index" [ngClass]="{'active': i === defaultImage}">
+                  <img [src]="url + image" (click)="imageClick(i)"/>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6 mx-md-auto">
+            <div class="single-product-overview p-t-b-40">
+              <h2>{{ product.name }}</h2>
+              <ul class="review p-t-b-20">
+                <li class="ratings-stars">
+                  <i 
+                    *ngFor="let item of array(5); let i = index" 
+                    class="icon icon-star pr-0"
+                    [ngClass]="{'text-light-blue': i < product.review}">
+                  </i>
+                  <span>
+                    {{ product.numberOfReviews }} Review(s) | 
+                    <a 
+                      *ngIf="!product.userReview" 
+                      class="pointer" 
+                      data-toggle="modal" 
+                      data-target="#reviewModal" >
+                      Write a Review
+                    </a>
+                    <a 
+                      *ngIf="!!product.userReview" 
+                      class="pointer" 
+                      data-toggle="modal" 
+                      data-target="#reviewModal" >
+                      Edit a Review
+                    </a>
+                  </span>&#x2003;
+                </li>
+              </ul>
+              <p class="no-mar">
+                {{ product.description }}
+              </p>
+              <ul class="product-description mt-35 mb-35 iconList">
+                <li>
+                  <span>Availability: </span>
+                  <span class="text-success" *ngIf="product.isInStock">Available</span>
+                  <span class="text-danger" *ngIf="!product.isInStock">Sold Out</span>
+                </li>
+              </ul>
+              <div class="cart-options">
+                <span style="font-size: 25px;">${{ product.price }}</span>
+                <div class="cart-buttons">
+                  <div class="quantity">
+                    <span class="btn-qty" (click)="onIncrementQty()">+</span>
+                    <span class="btn-qty down" (click)="onDecrementQty()">-</span>
+                    <input
+                      step="1"
+                      min="1"
+                      name="quantity"
+                      class="input-text qty text"
+                      size="4"
+                      type="number"
+                      [ngModel]="quantity"
+                      (change)="onChangeQty($event.srcElement.value)"
+                    />
+                  </div>
+                  <span>
+                    <a class="btn btn-lg btn-primary text-white pointer" (click)="addToCart()">ADD TO CART</a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row p-t-b-80">
+          <div class="col-12 col-lg-12">
+            <div class="product-tabs">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a href="#one-2" data-toggle="tab" class="nav-link active">Description</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#two-2" data-toggle="tab" class="nav-link">Specification</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#three" data-toggle="tab" class="nav-link">Return Info</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade active show" id="one-2">
+                  <p>
+                    {{ product.description }}
+                  </p>
+                </div>
+                <div class="tab-pane fade" id="two-2">
+                  <p>
+                    {{ product.specification}}
+                  </p>
+                </div>
+                <div class="tab-pane fade" id="three">
+                  <p>
+                    {{ product.returnInfo }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!fetching" class="modal fade show"
+ id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog modal-dialog-centered width-400" role="document">
+    <div class="modal-content no-r ">
+      <a class="pointer d-block ml-auto mr-1" data-dismiss="modal" aria-label="Close" >
+        <i class="icon icon-times"></i>
+      </a>
+      <div class="modal-body no-p">
+        <div class="text-center p-40 p-b-20">
+          <h6>Choose your review</h6>
+          <app-spinner *ngIf="reviewLoading"></app-spinner>
+          <div *ngIf="!reviewLoading" class="stars">
+            <i 
+              *ngFor="let item of array(5); let i = index" 
+              class="icon icon-star pr-0"
+              [ngClass]="{'text-light-blue': !!product.userReview && i < product.userReview.rate}"
+              (click)="onReview(i)">
+            </i>
+          </div>
+          <p class="text-danger mb-0 mt-2" *ngIf="!!reviewError">{{ reviewError }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

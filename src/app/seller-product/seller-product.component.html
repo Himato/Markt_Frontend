@@ -1,0 +1,29 @@
+<div class="search-section p-4">
+  <div class="container">
+    <h1>{{ sellerName }}</h1>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <ol>
+      <li><a [routerLink]="['/']">Home</a></li>
+      <li class="active">{{ sellerName }}</li>
+    </ol>
+  </div>
+</div>
+<div class="content-wrapper">
+  <div class="container">
+    <div class="xv-product-slides grid-view products" data-thumbnail="figure .xv-superimage"
+      data-product=".xv-product-unit">
+      <app-spinner *ngIf="fetching" class="center-absolute"></app-spinner>
+      <div class="row" *ngIf="!fetching && products.length === 0" style="margin-top: 5rem;">
+        <p class="text-center m-auto">There's no products found.</p>
+      </div>
+      <div class="row" *ngIf="!fetching">
+        <div *ngFor="let product of products" class="xv-product-unit col-3">
+          <app-product-result [product]="product"></app-product-result>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

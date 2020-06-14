@@ -1,0 +1,30 @@
+<div class="card p-40 m-4">
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="form-row">
+      <div class="form-group col-12">
+        <label>Name</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Cameras" 
+          name="name" 
+          ngModel 
+          #name="ngModel" 
+          required
+          minlength="4" />
+        <p class="text-danger" *ngIf="!name.valid && name.touched">
+          Invalid Category Name
+        </p>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg d-block pointer ml-auto" [disabled]="!form.valid">
+      <span *ngIf="!submitting">Add</span>
+      <app-spinner *ngIf="submitting"></app-spinner>
+    </button>
+
+    <p class="text-danger text-center" *ngIf="!!error">
+      {{ error }}
+    </p>
+  </form>
+</div>

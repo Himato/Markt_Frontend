@@ -1,0 +1,13 @@
+
+<div class="xv-product-slides grid-view products" data-thumbnail="figure .xv-superimage"
+  data-product=".xv-product-unit">
+  <div class="row">
+    <div class="xv-product-unit" *ngFor="let product of products">
+      <app-product-result [product]="product"></app-product-result>
+    </div>
+  </div>
+</div>
+<div class="row mb-2">
+  <button class="btn btn-primary pointer" (click)="onLast()" *ngIf="times !== 0">Previous</button>
+  <button class="btn btn-primary pointer ml-auto" (click)="onNext()" *ngIf="products.length === 25">Next</button>
+</div>

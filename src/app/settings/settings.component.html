@@ -1,0 +1,85 @@
+<div class="page">
+  <div class="search-section">
+    <div class="container">
+      <h1>Settings</h1>
+    </div>
+  </div>
+  <div class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a [routerLink]="['/']">Home</a></li>
+        <li class="active">Settings</li>
+      </ol>
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <h3>Settings</h3>
+          <div class="col-12">
+            <form (ngSubmit)="onSubmitSettings()" #settingsForm="ngForm">
+              <div class="form-group">
+                <label class="required">Email</label>
+                <input 
+                  type="email" 
+                  class="form-control" 
+                  name="email" 
+                  required [ngModel]="!!email ? email : ''" 
+                  #emailInput="ngModel">
+              </div>
+              <button 
+                type="submit" 
+                class="btn btn-success btn-lg pointer d-block ml-auto"
+                [disabled]="!settingsForm.valid || emailInput.value === email" >
+                <span *ngIf="!settingsLoading">{{ settingsSave }}</span>
+                <app-spinner *ngIf="settingsLoading"></app-spinner>
+              </button>
+              <p class="text-danger text-center" *ngIf="!!settingsError">{{ settingsError }}</p>
+            </form>
+          </div>
+        </div>
+        <div class="col-6">
+          <h3>Credentials</h3>
+          <div class="col-12">
+            <form (ngSubmit)="onSubmitCredentials()" #credentialsForm="ngForm">
+              <div class="form-group">
+                <label class="required">Current Password</label>
+                <input type="password" class="form-control" name="currentPassword" ngModel required>
+              </div>
+              <div class="form-group">
+                <label class="required">New Password</label>
+                <input 
+                  type="password" 
+                  class="form-control" 
+                  name="newPassword" 
+                  ngModel 
+                  required 
+                  minlength="6"
+                  maxlength="100"
+                  #password="ngModel">
+                  <p class="text-center" *ngIf="password.touched && !password.valid">Password must be between 6-100 characters</p>
+              </div>
+              <div class="form-group">
+                <label class="required">Confirm New Password</label>
+                <input 
+                  type="password" 
+                  class="form-control" 
+                  name="confirmPassword" 
+                  ngModel 
+                  #confirm="ngModel">
+                <p class="text-danger" *ngIf="confirm.dirty && password.value !== confirm.value">Passwords doesn't match</p>
+              </div>
+              <button type="submit" class="btn btn-success btn-lg pointer d-block ml-auto"
+                [disabled]="!credentialsForm.valid || password.value !== confirm.value">
+                <span *ngIf="!credentialsLoading">{{ credentialsSave }}</span>
+                <app-spinner *ngIf="credentialsLoading"></app-spinner>
+              </button>
+              <p class="text-danger text-center" *ngIf="!!credentialsError">{{ credentialsError }}</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="search-section page-header-style1">
+  <div class="container">
+    <h1>Start selling today</h1>
+    <p>
+      Put your products in front of the millions of customers that search
+      Markt.com every day.
+    </p>
+  </div>
+</div>
+
+<div class="content-wrapper animatedParent animateOnce">
+  <div class="container">
+    <div class="service-blocks fadeInUpShort animated go">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="service-block center paper-block">
+            <div class="service-icon">
+              <i class="icon icon-cube text-green" aria-hidden="true"></i>
+            </div>
+            <div class="service-content">
+              <h3>Let us do the heavy lifting</h3>
+              <p>
+                Scale swiftly and reach even more customers with Fulfillment by
+                Markt, our world-class fulfillment service. We pick, pack, and
+                ship your products and take care of customer service and
+                returns—all so you can focus on growing your business.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-block center paper-block">
+            <div class="service-icon">
+              <i class="icon icon-area-chart" aria-hidden="true"></i>
+            </div>
+            <div class="service-content">
+              <h3>Get your products seen by more shoppers</h3>
+              <p>
+                Increase your reach and drive sales by advertising your products
+                on Markt. Keyword-targeted ads appear in high-visibility
+                placements, right where customers will see them, and you only
+                pay when your ad is clicked.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-block center paper-block">
+            <div class="service-icon">
+              <i class="icon icon-ravelry text-blue" aria-hidden="true"></i>
+            </div>
+            <div class="service-content">
+              <h3>Reach hundreds of millions of customers</h3>
+              <p>
+                Access a massive audience of confident customers—in the U.S.
+                alone, Markt has over 150 million monthly unique visitors.¹
+                Benefit from a brand that ranks #1 in reputation as determined
+                by a 2018 Nielsen Company survey.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="row fadeInUpShort animated p-t-b-40 go">
+      <div class="col-xs-12 col-md-6">
+        <div class="service-featured-content">
+          <h3>WHY CHOOSE US</h3>
+          <ul class="iconList arrowIcon pt-5">
+            <li>We take care of the heavy lifting</li>
+            <li>Your products will be seen by more shoppers</li>
+            <li>Your products will reach hundreds of millions of customers</li>
+          </ul>
+          <br />
+          <button
+            class="btn btn-success btn-lg pointer"
+            style="width: 150px!important;"
+            (click)="onUpgrade()"
+          >
+            <span [ngClass]="{ hide: submitting }">Upgrade Now!</span>
+            <app-spinner [ngClass]="{ hide: !submitting }"></app-spinner>
+          </button>
+          <p *ngIf="!!error" class="text-danger mt-2 mb-2">
+            {{ error }}
+          </p>
+          <p class="note mt-1">
+            *Note: this is just a demo app, so there's no need for simulating the
+            request. You will be accepted immediately.
+          </p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="pricing">
+          <div class="pricebox pro text-white">
+            <h4 class="title">Seller Account</h4>
+            <span class="price">20</span> <span class="dollar">$</span>
+            <span class="slash">/</span> <span class="month">month</span>
+            <p class="visitors">+ additional selling fees</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

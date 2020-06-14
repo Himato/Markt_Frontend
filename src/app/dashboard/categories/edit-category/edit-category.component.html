@@ -1,0 +1,48 @@
+<div class="card p-40 m-4">
+  <app-spinner *ngIf="fetching"></app-spinner>
+  <form (ngSubmit)="onSubmit()" #form="ngForm" *ngIf="!fetching">
+    <div class="form-row">
+      <div class="form-group col-12">
+        <label>Name</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Cameras" 
+          name="name" 
+          [ngModel]="category.name" 
+          #name="ngModel" 
+          required
+          minlength="4" />
+        <p class="text-danger" *ngIf="!name.valid && name.touched">
+          Invalid Category Name
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <button 
+        type="button" 
+        class="btn btn-danger btn-lg pointer"
+        (click)="onDelete()" >
+        <span *ngIf="!deleting">Delete</span>
+        <app-spinner *ngIf="deleting"></app-spinner>
+      </button>
+      <button 
+        type="submit" 
+        class="btn btn-primary btn-lg pointer ml-auto" 
+        [disabled]="!form.valid">
+        <span *ngIf="!submitting">Update</span>
+        <app-spinner *ngIf="submitting"></app-spinner>
+      </button>
+    </div>
+    
+    <p
+      class="text-success text-center mb-2"
+      *ngIf="!!process" >
+      {{ process }}
+    </p>
+    <p class="text-danger text-center" *ngIf="!!error">
+      {{ error }}
+    </p>
+  </form>
+</div>

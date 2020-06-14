@@ -1,0 +1,83 @@
+.slide-outer {
+  overflow: hidden;
+  user-select: none;
+}
+
+.slide-wrapper {
+  height: 445px;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide-wrapper > img {
+  position: relative;
+  width: 100%;
+  margin-right: 10px;
+  transition: transform 0.5s ease;
+}
+
+.slide-wrapper:hover img {
+  transform: scale(1.5);
+}
+
+.slide-gallery {
+  width: 100%;
+  list-style: none outside none;
+  margin-top: 30px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.slide-gallery > li {
+  width: 88.75px;
+  margin-right: 5px;
+  float: left;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.slide-gallery > li.active {
+  opacity: 1;
+}
+
+.btn-qty {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #eee;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 300;
+  height: 100%;
+  line-height: 50px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 40px;
+  color: #5e6977;
+}
+
+.btn-qty:hover {
+  background: #03a9f4;
+  color: #fff;
+}
+
+.btn-qty.down {
+  right: auto;
+  left: -2px;
+}
+
+.stars {
+  font-size: 40px;
+}
+
+.stars > i {
+  cursor: pointer;
+}
+
+.stars > i:hover ~ i:before {
+  color: #86939e !important;
+}
+
+.stars:hover > i:before {
+  color: #03a9f4 !important;
+}

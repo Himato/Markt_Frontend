@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card no-b">
+        <div class="collapse show">
+          <div class="card-body p-0">
+            <div class="table-responsive" style="min-height: 80px;">
+              <table class="table table-hover mb-0" *ngIf="!fetching && (!products || products.length > 0)">
+                <tbody>
+                  <tr 
+                    *ngFor="let product of products" 
+                    style="height: 140px;" 
+                    [ngClass]="{ 'new-highlight': !!id && product.id === id }" >
+                    <td class="w-10">
+                      <img [src]="url + product.images[0].uri" alt="Product Image" />
+                    </td>
+                    <td style="width: 30%;">
+                      <h6>{{ product.name }}</h6>
+                      <small class="text-muted">{{ product.subcategory.name }}</small>
+                      <br />
+                      <small class="text-muted">{{ product.brand.name }}</small>
+                    </td>
+                    <td>${{ product.price }}</td>
+                    <td>
+                      <span *ngIf="product.isInStock" class="badge badge-success">Published</span>
+                      <span *ngIf="!product.isInStock" class="badge badge-danger">Sold out</span>
+                    </td>
+                    <td>
+                      <span><i class="icon icon-timer"></i> {{ product.dateTime | date: 'medium' }}</span>
+                    </td>
+                    <td>
+                      <a [routerLink]="['/dashboard', 'edit', product.id ]" >
+                        <i class="icon icon-pencil-square-o"></i> Edit item
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p *ngIf="!fetching && (!products || products.length === 0)" class="no-data">
+                You haven't added any products yet.
+              </p>
+              <div *ngIf="fetching" class="text-center mt-4">
+                <app-spinner></app-spinner>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+@import url("assets/css/app.css");
+
+.hide {
+  display: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pointer[disabled] {
+  cursor: default;
+}
+
+a.pointer:not([href]):not([tabindex]):hover {
+  color: #03a9f4;
+}
+
+.center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+textarea.form-control {
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
+p.note {
+  line-height: 20px !important;
+  font-size: 12px !important;
+  text-align: left !important;
+}
+
+p.no-data {
+  margin: 0px;
+  padding: 40px;
+  text-align: center;
+}
+
+.product-image {
+  width: 225px;
+  height: 225px;
+}
+
+a.product-buy:not([href]):not([tabindex]):hover {
+  color: #fff;
+  background: #03a9f4;
+  box-shadow: 0 3px 9px 0 rgba(0, 0, 0, .26)
+}
+
+/* Product Preview */ 
+.product-preview-container {
+  position: relative;
+  width: 75%;
+  border: 1px solid gray;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.product-preview-image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.product-preview-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #008cba;
+}
+
+.product-preview-container:hover .product-preview-image {
+  opacity: 0.3;
+}
+
+.product-preview-container:hover .product-preview-overlay {
+  opacity: 0.7;
+}
+
+.product-preview-text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+@keyframes yellowfade {
+  from {
+    background: #f6f5d7;
+  }
+  to {
+    background: transparent;
+  }
+}
+
+.new-highlight {
+  /* transition: background-color 0.5s ease-in-out;
+    background-color: #F6F5D7; */
+  animation-name: yellowfade;
+  animation-duration: 2s;
+}

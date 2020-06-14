@@ -1,0 +1,159 @@
+<div class="page">
+  <div class="search-section">
+    <div class="container">
+      <h1>Cart</h1>
+    </div>
+  </div>
+  <div class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a [routerLink]="['/']" >Home</a></li>
+        <li class="active">Cart</li>
+      </ol>
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <div class="container" *ngIf="!cart || cart.purchases.length === 0">
+      <app-spinner *ngIf="fetching"></app-spinner>
+      <p class="text-center text-black" *ngIf="!fetching">
+        There is no products added in the cart
+      </p>
+    </div>
+    <div class="container" *ngIf="!!cart && cart.purchases.length > 0">
+      <table class="table table-striped paper-block">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="text-center">Product Name</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr 
+            *ngFor="let purchase of cart.purchases" 
+            [ngClass]="{ 'new-highlight': !!addedId && purchase.product.id == addedId }" >
+            <td>
+              <figure>
+                <img [src]="url + purchase.product.imageUri" alt="Product Image" />
+              </figure>
+            </td>
+            <td class="text-center">
+              {{ purchase.product.name }}
+              <span *ngIf="!purchase.product.isInStock" class="text-danger"> (Sold Out)</span>
+            </td>
+            <td class="text-center">${{ purchase.product.price }}</td>
+            <td class="text-center">
+              <div class="quantity mr-0">
+                <span class="btn-qty" (click)="onIncrementQty(purchase)">+</span>
+                <span class="btn-qty down" (click)="onDecrementQty(purchase)">-</span>
+                <input
+                  step="1"
+                  min="0"
+                  class="input-text qty text"
+                  size="4"
+                  type="number"
+                  name="quantity"
+                  [ngModel]="purchase.quantity"
+                  (change)="onChangeQty($event.srcElement.value, purchase)"
+                />
+              </div>
+            </td>
+            <td class="text-center">
+              <span>${{ purchase.totalPrice }}</span>
+              <a class="pointer ml-2" (click)="onDelete(purchase)"><i class="icon icon-trash"></i></a>
+            </td>
+            <!-- <td>
+              <a href="#"><i class="icon icon-recycle"></i></a>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+      <div class="row p-b-40">
+        <div class="col-sm-8 col-xs-12">
+          <div class="paper-block">
+            <h4>Billing Address</h4>
+            <form #oldForm="ngForm">
+              <div class="row">
+                <div class="col-12">
+                  <label>Choose address</label>
+                  <select 
+                    class="form-control" 
+                    name="billingAddressId"
+                    [ngModel]="!!addresses && addresses.length > 0 ? addresses[0].id : 0" 
+                    required 
+                    #selector="ngModel" >
+                    <option value="0" >Add New Address</option>
+                    <option *ngFor="let address of addresses" [value]="address.id">
+                      {{ address.address }} | {{ address.address }}, {{ address.city }} | {{ address.postCode }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <form #newForm="ngForm" [ngClass]="{'hide': selector.value != 0}">
+              <div class="row">
+                <div class="col-6">
+                  <label>Address</label>
+                  <input type="text" class="form-control" name="address" ngModel required />
+                </div>
+                <div class="col-6">
+                  <label>Country</label>
+                  <input type="text" class="form-control" name="country" ngModel required />
+                </div>
+                <div class="col-6">
+                  <label>Town/City</label>
+                  <input type="text" class="form-control" name="city" ngModel required />
+                </div>
+                <div class="col-6">
+                  <label>Post Code</label>
+                  <input type="text" class="form-control" name="postCode" ngModel required />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-sm-4 col-xs-12 ml-auto">
+          <div class="paper-block">
+            <h4>Total</h4>
+            <table class="table table-striped tabs-vertical">
+              <tbody>
+                <tr>
+                  <th>Products</th>
+                  <td><span class="price">${{ cart.totalPrice | number:'1.2' }}</span></td>
+                </tr>
+                <tr>
+                  <th>Shiping Cost</th>
+                  <td><span class="price">$00.00</span></td>
+                </tr>
+                <tr>
+                  <th>Grand Total</th>
+                  <td><span class="price">${{ cart.totalPrice | number:'1.2' }}</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <button
+              class="btn btn-success btn-block btn-lg pointer"
+              type="submit"
+              (click)="onCheckout()"
+              [disabled]="!valid || selector.value == 0 && !newForm.valid" >
+              <app-spinner *ngIf="checkingout"></app-spinner>
+              <span *ngIf="!checkingout">Proceed to checkout</span>
+            </button>
+            <p *ngIf="!valid" class="text-danger text-center my-1">
+              One or more purchase are invalid
+            </p>
+            <p *ngIf="!!error" class="text-danger text-center my-1">
+              {{ error }}
+            </p>
+            <p class="note my-1">
+              *Note: this is just a demo app, so there's no need for simulating the
+              checkout process. Your request will be done immediately.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

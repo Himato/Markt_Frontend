@@ -1,0 +1,28 @@
+<div class="xv-product paper-block">
+    <figure>
+      <a [routerLink]="['/products', product.uri]">
+        <img class="product-image" [src]="url + product.imageUri" alt="">
+      </a>
+      <figcaption>
+        <ul class="style1">
+          <li>
+            <button class="btn btn-primary pointer" [routerLink]="['/products', product.uri]">View
+              Product</button>
+          </li>
+        </ul>
+      </figcaption>
+    </figure>
+    <div class="xv-product-content">
+      <h3>
+        <a [routerLink]="['/products', product.uri]">
+          {{ product.name }}
+        </a>
+      </h3>
+      <a [routerLink]="['/seller', product.sellerUsername]" >{{ product.sellerName }}</a>
+      <div class="xv-rating stars-5"></div>
+      <span class="xv-price mt-2">${{ product.price }}</span>
+      <a data-qv-tab="#qvt-cart" (click)="addToCart()" class="product-buy pointer">
+        <i class="icon icon-shopping-basket" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>

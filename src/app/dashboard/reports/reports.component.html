@@ -1,0 +1,60 @@
+<app-header>
+  <div class="row p-b-10">
+    <div class="col">
+      <h4><i class="icon-package"></i> Reports</h4>
+    </div>
+  </div>
+</app-header>
+<div class="content-wrapper" style="min-height: 975px;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card no-b">
+          <div class="collapse show">
+            <div class="card-body p-0">
+              <div class="table-responsive" style="min-height: 80px;">
+                <table class="table mb-0" *ngIf="!fetching && !!reports && reports.length > 0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>No. Of Finished Purchases</th>
+                      <th>No. Of Await Purchases</th>
+                      <th>Total Sold Quantity</th>
+                      <th>Total Await Quantity</th>
+                      <th>Total Availabe Money</th>
+                      <th>Total Expected Money</th>
+                      <th>View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let report of reports" style="height: 80px;"  >
+                      <td style="width: 20%;">{{ report.name }}</td>
+                      <td>{{ report.numberOfFinishedPurchases }}</td>
+                      <td>{{ report.numberOfAwaitPurchases }}</td>
+                      <td>{{ report.totalSoldQuantity }}</td>
+                      <td>{{ report.totalAwaitQuantity }}</td>
+                      <td>{{ report.totalAvailableMoney | number: '1.2' }}</td>
+                      <td>{{ report.totalExpectedMoney | number: '1.2' }}</td>
+                      <td class="text-center">
+                        <a [routerLink]="['/products', report.uri ]" target="_blank" >
+                          <i class="icon icon-pencil-square-o"></i> View Product
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p *ngIf="!fetching && (!reports || reports.length === 0)" class="no-data">
+                  There's no any current reports.
+                </p>
+                <div *ngIf="fetching" class="text-center mt-4">
+                  <app-spinner></app-spinner>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>

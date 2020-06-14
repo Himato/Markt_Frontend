@@ -1,0 +1,164 @@
+<div class="light b-t">
+  <div
+    id="primary"
+    class="content-area"
+    data-bg-possition="center"
+    data-bg-repeat="false"
+    style="background: url('../../assets/img/icon/icon-circles.png');"
+  >
+    <main id="main" role="main">
+      <div class="container">
+        <div class="col-xl-8 mx-lg-auto p-t-b-80">
+          <header class="text-center">
+            <h1>Create New Account</h1>
+            <p>
+              Join Our wonderful market and start shopping now
+            </p>
+            <img
+              class="p-t-b-50"
+              src="../../assets/img/icon/icon-join.png"
+              alt=""
+            />
+          </header>
+          <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="Username"
+                    ngModel
+                    name="username"
+                    #username="ngModel"
+                    required
+                    minlength="4"
+                    maxlength="32"
+                    pattern="^[\w]+$"
+                  />
+                  <p
+                    class="text-danger"
+                    *ngIf="!username.valid && username.touched"
+                  >
+                    Invalid Username
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="First Name"
+                    ngModel
+                    name="firstName"
+                    #firstName="ngModel"
+                    required
+                    minlength="4"
+                    maxlength="32"
+                    pattern="^[a-zA-Z_\s]+$"
+                  />
+                  <p
+                    class="text-danger"
+                    *ngIf="!firstName.valid && firstName.touched"
+                  >
+                    Invalid First Name
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="Last Name"
+                    ngModel
+                    name="lastName"
+                    #lastName="ngModel"
+                    required
+                    minlength="4"
+                    maxlength="32"
+                    pattern="^[a-zA-Z_\s]+$"
+                  />
+                  <p
+                    class="text-danger"
+                    *ngIf="!lastName.valid && lastName.touched"
+                  >
+                    Invalid Last Name
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="Email Address"
+                    ngModel
+                    #email="ngModel"
+                    name="email"
+                    required
+                    email
+                  />
+                  <p class="text-danger" *ngIf="!email.valid && email.touched">
+                    Invalid Email
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input
+                    type="password"
+                    class="form-control form-control-lg"
+                    placeholder="Password"
+                    ngModel
+                    name="password"
+                    #password="ngModel"
+                    required
+                    minlength="6"
+                    maxlength="100"
+                  />
+                  <p class="text-center" *ngIf="password.touched && !password.valid">Password must be between 6-100 characters</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input
+                    type="password"
+                    class="form-control form-control-lg"
+                    placeholder="Confirm Password"
+                    ngModel
+                    name="confirmPassword"
+                    #confirmPassword="ngModel"
+                  />
+                  <p
+                    class="text-danger"
+                    *ngIf="confirmPassword.value !== password.value && confirmPassword.dirty"
+                  >
+                    Passwords don't match
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <button
+                  type="submit"
+                  class="btn btn-success btn-lg btn-block pointer"
+                  [disabled]="!registerForm.valid || confirmPassword.value !== password.value"
+                >
+                  <span [ngClass]="{'hide': submitting}">Create Account</span>
+                  <app-spinner [ngClass]="{'hide': !submitting}"></app-spinner>
+                </button>
+                <p
+                  class="text-danger"
+                  *ngIf="!!error"
+                >
+                  {{ error }}
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

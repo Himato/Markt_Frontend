@@ -1,0 +1,59 @@
+<div class="page">
+    <div class="search-section">
+      <div class="container">
+        <h1>My Orders</h1>
+      </div>
+    </div>
+    <div class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a [routerLink]="['/']" >Home</a></li>
+          <li class="active">Orders</li>
+        </ol>
+      </div>
+    </div>
+    <div class="content-wrapper">
+      <div class="container" *ngIf="!orders || orders.length === 0">
+        <app-spinner *ngIf="fetching"></app-spinner>
+        <p class="text-center text-black" *ngIf="!fetching">
+          There is no orders ordered yet
+        </p>
+        <p class="text-center text-danger" *ngIf="!!error && !fetching">
+            {{ error }}
+          </p>
+      </div>
+      <div class="container" *ngIf="!!orders && orders.length > 0">
+        <table class="table table-striped paper-block">
+          <thead>
+            <tr>
+              <th class="text-center">Summary</th>
+              <th class="text-center">Address</th>
+              <th class="text-center">Date</th>
+              <th class="text-center">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+              *ngFor="let order of orders" >
+              <td class="text-center w-35">
+                <span *ngFor="let purchase of order.purchases" class="text-center">
+                    x{{ purchase.quantity }} {{ purchase.product.name }} <br />
+                </span>
+              </td>
+              <td class="text-center">
+                  <span class="text-center">
+                    {{ order.address.address }}<br />
+                    {{ order.address.address }}, {{ order.address.city }} | {{ order.address.postCode }}
+                  </span>
+              </td>
+              <td class="text-center">{{ order.dateTime | date: 'medium' }}</td>
+              <td class="text-center">
+                <span>${{ order.totalPrice }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

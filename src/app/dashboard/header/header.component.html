@@ -1,0 +1,34 @@
+<header class="blue accent-3 relative">
+  <div
+    class="navbar navbar-expand navbar-dark d-flex justify-content-end bd-navbar" >
+    <ul class="navbar-nav p-t-10">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/']" ><i class="icon-tasks s-18"></i></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-item nav-link mr-md-2"
+          href="#"
+          id="bd-versions"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          ><i class="icon-more_vert s-18"></i
+        ></a>
+        <div class="dropdown-menu dropdown-menu-right b-0 shadow1">
+          <a class="dropdown-item" [routerLink]="['/settings']"  >
+            <i class="icon-cog"></i> Account Settings
+          </a>
+          <a class="dropdown-item" [routerLink]="['/dashboard', 'reports']" >
+            <i class="icon-money"></i> Earning Reports
+          </a>
+          <div class="dropdown-divider" ></div>
+          <a class="dropdown-item text-center pointer" (click)="onLogout()" >Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="container-fluid text-white">
+    <ng-content></ng-content>
+  </div>
+</header>

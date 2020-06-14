@@ -1,0 +1,60 @@
+<app-header>
+  <div class="row p-b-10">
+    <div class="col">
+      <h4><i class="icon-package"></i> Users</h4>
+    </div>
+  </div>
+</app-header>
+<div class="content-wrapper" style="min-height: 975px;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card no-b">
+          <div class="collapse show">
+            <div class="card-body p-0">
+              <div class="table-responsive" style="min-height: 80px;">
+                <table class="table mb-0" *ngIf="!fetching && !!users && users.length > 0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Type</th>
+                      <th>Created Date</th>
+                      <th>No. Of Products</th>
+                      <th>No. Of Finished Purchases</th>
+                      <th>No. Of Await Purchases</th>
+                      <th>Total Paid Money</th>
+                      <th>Total Await Money</th>
+                      <th>Total Gained Money</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user of users" style="height: 80px;"  >
+                      <td>{{ user.name }}</td>
+                      <td>{{ user.email }}</td>
+                      <td>{{ user.type }}</td>
+                      <td>{{ user.createdDateTime | date: 'medium' }}</td>
+                      <td>{{ user.numberOfProducts }}</td>
+                      <td>{{ user.numberOfFinishedPurchases }}</td>
+                      <td>{{ user.numberOfAwaitPurchases }}</td>
+                      <td>{{ user.totalPaidMoney | number: '1.2' }}</td>
+                      <td>{{ user.totalAwaitMoney | number: '1.2' }}</td>
+                      <td>{{ user.totalGainedMoney | number: '1.2' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p *ngIf="!fetching && (!users || users.length === 0)" class="no-data">
+                  There's no any current users.
+                </p>
+                <div *ngIf="fetching" class="text-center mt-4">
+                  <app-spinner></app-spinner>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
