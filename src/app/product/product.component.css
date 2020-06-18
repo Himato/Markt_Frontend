@@ -11,7 +11,7 @@
 
 .slide-wrapper > img {
   position: relative;
-  height: 445;
+  max-height: 445px;
   width: auto;
   margin-right: 10px;
   transition: transform 0.5s ease;
@@ -27,6 +27,10 @@
   margin-top: 30px;
   overflow: hidden;
   user-select: none;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slide-gallery > li {
@@ -93,7 +97,7 @@
 }
 
 .gallery-item img {
-  height: 90px;
+  max-height: 90px;
   width: auto;
   max-width: 90px;
 }
