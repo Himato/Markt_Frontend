@@ -12,7 +12,7 @@
     >
       <div class="user-panel">
         <div class="info text-center">
-          <h6 class="p-t-10">{{ username }}</h6>
+          <a [routerLink]="['/seller', username]" ><h6 class="p-t-10">{{ username }}</h6></a>
         </div>
       </div>
       <ul class="sidebar-menu scroll">
