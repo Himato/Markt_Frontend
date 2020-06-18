@@ -32,10 +32,6 @@ export class SubcategoryComponent implements OnInit {
       this.categories = categories;
     });
 
-    this.productsService.getBrands().subscribe((brands: Brand[]) => {
-      this.brands = brands;
-    });
-
     this.activatedRoute.params.subscribe((params) => {
       const uri = params.uri;
 
@@ -45,6 +41,10 @@ export class SubcategoryComponent implements OnInit {
 
       this.uri = uri;
       this.offset = 0;
+
+      this.productsService.getBrands(uri).subscribe((brands: Brand[]) => {
+        this.brands = brands;
+      });
 
       this.getProducts();
     });
