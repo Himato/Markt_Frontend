@@ -4,14 +4,15 @@
 }
 
 .slide-wrapper {
-  height: 445px;
   overflow: hidden;
   position: relative;
+  text-align: center;
 }
 
 .slide-wrapper > img {
   position: relative;
-  width: 100%;
+  height: 445;
+  width: auto;
   margin-right: 10px;
   transition: transform 0.5s ease;
 }
@@ -29,7 +30,6 @@
 }
 
 .slide-gallery > li {
-  width: 88.75px;
   margin-right: 5px;
   float: left;
   opacity: 0.3;
@@ -80,4 +80,20 @@
 
 .stars:hover > i:before {
   color: #03a9f4 !important;
+}
+
+.tab-pane p {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.gallery-item {
+  text-align: center;
+}
+
+.gallery-item img {
+  height: 90px;
+  width: auto;
+  max-width: 90px;
 }

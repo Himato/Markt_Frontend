@@ -12,7 +12,10 @@
                 </div>
               </div>
               <ul class="slide-gallery" >
-                <li *ngFor="let image of product.images; let i = index" [ngClass]="{'active': i === defaultImage}">
+                <li 
+                  class="gallery-item" 
+                  *ngFor="let image of product.images; let i = index" 
+                  [ngClass]="{'active': i === defaultImage}">
                   <img [src]="url + image" (click)="imageClick(i)"/>
                 </li>
               </ul>
