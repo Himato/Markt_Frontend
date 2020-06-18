@@ -6,14 +6,16 @@
 .slide-wrapper {
   overflow: hidden;
   position: relative;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 445px;
 }
 
 .slide-wrapper > img {
   position: relative;
-  max-height: 445px;
+  max-height: 100%;
   width: auto;
-  margin-right: 10px;
   transition: transform 0.5s ease;
 }
 
@@ -86,7 +88,8 @@
   color: #03a9f4 !important;
 }
 
-.tab-pane p {
+.tab-pane p,
+.no-mar {
   word-wrap: break-word;
   white-space: pre-wrap;
   word-break: break-word;
