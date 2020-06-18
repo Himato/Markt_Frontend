@@ -1,0 +1,12 @@
+.image-figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 225px;
+}
+
+.product-image {
+  width: auto;
+  height: auto;
+  max-height: 225px;
+}
