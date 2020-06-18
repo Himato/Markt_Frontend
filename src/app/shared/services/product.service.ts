@@ -86,8 +86,12 @@ export class ProductService {
     return this.http.get<SingleProduct>(this.url + productUri);
   }
 
-  getBrands(uri: string): Observable<Brand[]> {
-    return this.http.get<Brand[]>(this.url + 'brands?subcategoryUri=' + uri);
+  getBrands(uri?: string): Observable<Brand[]> {
+    if (!!uri) {
+      return this.http.get<Brand[]>(this.url + 'brands?subcategoryUri=' + uri);
+    } else {
+      return this.http.get<Brand[]>(this.url + 'brands');
+    }
   }
 
   getAdminBrands(): Observable<Brand[]> {
