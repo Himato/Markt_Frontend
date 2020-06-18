@@ -32,6 +32,7 @@ export class SingleProduct {
   id: number;
   name: string;
   sellerName: string;
+  sellerUserName: string;
   description: string;
   specification: string;
   returnInfo: string;

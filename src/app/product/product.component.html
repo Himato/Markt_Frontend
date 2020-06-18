@@ -59,6 +59,12 @@
                   <span class="text-success" *ngIf="product.isInStock">Available</span>
                   <span class="text-danger" *ngIf="!product.isInStock">Sold Out</span>
                 </li>
+                <li>
+                  <span>Sold by: </span>
+                  <a [routerLink]="['/seller', product.sellerUserName]" >
+                    <span *ngIf="product.isInStock">{{ product.sellerName }}</span>
+                  </a>
+                </li>
               </ul>
               <div class="cart-options">
                 <span style="font-size: 25px;">${{ product.price }}</span>
