@@ -13,7 +13,7 @@
       </figcaption>
     </figure>
     <div class="xv-product-content">
-      <h3>
+      <h3 class="product-name" [title]="product.name">
         <a [routerLink]="['/products', product.uri]">
           {{ product.name }}
         </a>
