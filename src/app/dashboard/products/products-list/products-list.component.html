@@ -29,6 +29,11 @@
                       <span><i class="icon icon-timer"></i> {{ product.dateTime | date: 'medium' }}</span>
                     </td>
                     <td>
+                      <a [routerLink]="['/products', product.uri ]" target="_blank" >
+                        <i class="icon icon-eye"></i> View item
+                      </a>
+                    </td>
+                    <td>
                       <a [routerLink]="['/dashboard', 'edit', product.id ]" >
                         <i class="icon icon-pencil-square-o"></i> Edit item
                       </a>
