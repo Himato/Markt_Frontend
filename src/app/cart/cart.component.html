@@ -35,11 +35,11 @@
             *ngFor="let purchase of cart.purchases" 
             [ngClass]="{ 'new-highlight': !!addedId && purchase.product.id == addedId }" >
             <td>
-              <figure>
+              <div class="product-image">
                 <img [src]="url + purchase.product.imageUri" alt="Product Image" />
-              </figure>
+              </div>
             </td>
-            <td class="text-center">
+            <td class="product-name">
               {{ purchase.product.name }}
               <span *ngIf="!purchase.product.isInStock" class="text-danger"> (Sold Out)</span>
             </td>
