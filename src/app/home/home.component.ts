@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   error: string;
   products: ProductResult[];
   offset = 0;
+  times = 0;
 
   constructor(
     private categoryService: CategoryService,
@@ -32,18 +33,20 @@ export class HomeComponent implements OnInit {
   }
 
   onNext() {
+    this.times += 1;
     this.getProducts();
   }
 
   onPrevious() {
     this.offset -= 2;
+    this.times -= 1;
     this.getProducts();
   }
 
   getProducts(query?: string) {
     this.offset = this.offset > 0 ? this.offset : 0;
     this.fetching = true;
-    this.productsService.getHomeProducts(query, this.offset++ * 25).subscribe((products: ProductResult[]) => {
+    this.productsService.getHomeProducts(query, this.offset++ * 24).subscribe((products: ProductResult[]) => {
       this.products = products;
       this.fetching = false;
     }, error => {

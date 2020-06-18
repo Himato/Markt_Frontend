@@ -8,6 +8,6 @@
   </div>
 </div>
 <div class="row mb-2">
-  <button class="btn btn-primary pointer" (click)="onLast()" *ngIf="times !== 0">Previous</button>
-  <button class="btn btn-primary pointer ml-auto" (click)="onNext()" *ngIf="products.length === 25">Next</button>
+  <button class="btn btn-primary pointer" (click)="onLast()" *ngIf="times > 0">Previous</button>
+  <button class="btn btn-primary pointer ml-auto" (click)="onNext()" *ngIf="products.length === 24">Next</button>
 </div>

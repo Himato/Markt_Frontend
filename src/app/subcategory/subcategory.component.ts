@@ -18,6 +18,7 @@ export class SubcategoryComponent implements OnInit {
   error: string = null;
   products: ProductResult[];
   offset = 0;
+  times = 0;
   uri: string;
 
   constructor(
@@ -51,11 +52,13 @@ export class SubcategoryComponent implements OnInit {
   }
 
   onNext() {
+    this.times -= 1;
     this.getProducts();
   }
 
   onPrevious() {
     this.offset -= 2;
+    this.times -= 1;
     this.getProducts();
   }
 
@@ -63,7 +66,7 @@ export class SubcategoryComponent implements OnInit {
     this.offset = this.offset > 0 ? this.offset : 0;
     this.fetching = true;
 
-    this.productsService.getProducts(this.uri, brands, query, this.offset++ * 25)
+    this.productsService.getProducts(this.uri, brands, query, this.offset++ * 24)
       .subscribe((products: ProductResult[]) => {
         this.products = products;
         this.fetching = false;

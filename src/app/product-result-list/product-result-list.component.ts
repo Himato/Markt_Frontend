@@ -10,17 +10,15 @@ export class ProductResultListComponent {
   @Input() products: ProductResult[];
   @Output() next = new EventEmitter();
   @Output() previous = new EventEmitter();
-  times = 0;
+  @Input() times: number; // indicates the number of times requested
 
   constructor() { }
 
   onNext() {
-    this.times++;
     this.next.emit(null);
   }
 
   onLast() {
-    this.times--;
     this.previous.emit(null);
   }
 }

@@ -9,7 +9,9 @@
             <p *ngIf="products.length === 0" class="text-center m-auto">There's no products found.</p>
           </div>
           <app-product-result-list 
-            *ngIf="!fetching && products.length > 0" [products]="products"
+            *ngIf="!fetching && products.length > 0" 
+            [products]="products"
+            [times]="times"
             (next)="onNext()"
             (previous)="onPrevious()">
           </app-product-result-list>
